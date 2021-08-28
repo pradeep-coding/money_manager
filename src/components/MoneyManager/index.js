@@ -52,12 +52,14 @@ class MoneyManager extends Component {
       type: displayText,
     }
 
-    this.setState(prevState => ({
-      transactionsList: [...prevState.transactionsList, newTransaction],
-      inputTitle: '',
-      inputAmount: '',
-      inputType: transactionTypeOptions[0].optionId,
-    }))
+    if (inputTitle !== '' && inputAmount !== '') {
+      this.setState(prevState => ({
+        transactionsList: [...prevState.transactionsList, newTransaction],
+        inputTitle: '',
+        inputAmount: '',
+        inputType: transactionTypeOptions[0].optionId,
+      }))
+    }
   }
 
   calculateExpenses = () => {
@@ -144,7 +146,7 @@ class MoneyManager extends Component {
               />
               <label htmlFor="input-amount">AMOUNT</label>
               <input
-                type="text"
+                type="number"
                 placeholder="AMOUNT"
                 id="input-amount"
                 value={inputAmount}
